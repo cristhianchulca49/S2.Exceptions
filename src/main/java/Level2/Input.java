@@ -33,7 +33,16 @@ public class Input {
     }
 
     public static float readFloat(String message) {
-        return sc.nextFloat();
+        while (true) {
+            try {
+                System.out.println(message);
+                return sc.nextFloat();
+            } catch (InputMismatchException e) {
+                System.out.println("Sorry, Format error! check if you write the number with comma");
+            } finally {
+                sc.nextLine();
+            }
+        }
     }
 
     public static double readDouble(String message) {
