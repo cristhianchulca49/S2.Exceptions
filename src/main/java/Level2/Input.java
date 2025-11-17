@@ -1,5 +1,7 @@
 package Level2;
 
+import Level2.Exceptions.CustomStringException;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -98,12 +100,12 @@ public class Input {
                 System.out.println(message);
                 String letter = sc.nextLine();
                 if (letter.length() > 1) {
-                    throw new CustomStringException("Input must be a single letter: s or n");
+                    throw new CustomStringException("Input must be a single letter: Y or N");
                 }
                 return switch (letter.toLowerCase()) {
                     case "n" -> false;
-                    case "s" -> true;
-                    default -> throw new CustomStringException("You just have to write S or N");
+                    case "y" -> true;
+                    default -> throw new CustomStringException("You just have to write Y or N");
                 };
             } catch (CustomStringException e) {
                 System.out.println(e.getMessage());

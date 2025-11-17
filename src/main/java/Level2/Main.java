@@ -20,7 +20,7 @@ public class Main {
         String name = Input.readString("Write your name");
         System.out.println("Your  name is: " + name);
 
-        boolean s_n = Input.readBoolean("Choose S or N");
-        System.out.println("You chose " + s_n);
+        boolean y_n = Input.readBoolean("Choose Y or N");
+        System.out.println("You chose " + y_n);
     }
 }
