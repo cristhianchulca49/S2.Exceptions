@@ -75,4 +75,20 @@ public class Input {
             }
         }
     }
+
+    public static String readString(String message) {
+        while (true) {
+            try {
+                System.out.println(message);
+                String name = sc.nextLine();
+                if (name.equals(name.toLowerCase())) {
+                    return name;
+                } else {
+                    throw new CustomStringException("Only lowercase letters are allowed, no numbers or uppercase letters");
+                }
+            } catch (CustomStringException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
