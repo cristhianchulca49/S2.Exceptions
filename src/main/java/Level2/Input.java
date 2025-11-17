@@ -28,8 +28,6 @@ public class Input {
                 return Integer.parseInt(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, You must write only number, not letters, dot or comma");
-            } finally {
-                sc.nextLine();
             }
         }
     }
@@ -42,8 +40,6 @@ public class Input {
                 return Float.parseFloat(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, Format error! check if you write the number with comma");
-            } finally {
-                sc.nextLine();
             }
         }
     }
@@ -56,8 +52,6 @@ public class Input {
                 return Double.parseDouble(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, Format error! check if you write the number with comma");
-            } finally {
-                sc.nextLine();
             }
         }
     }
@@ -74,8 +68,6 @@ public class Input {
                 }
             } catch (CustomStringException e) {
                 System.out.println(e.getMessage());
-            } finally {
-                sc.nextLine();
             }
         }
     }
