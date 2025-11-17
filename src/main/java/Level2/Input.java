@@ -12,11 +12,10 @@ public class Input {
         while (true) {
             try {
                 System.out.println(message);
-                return sc.nextByte();
+                String aux = sc.nextLine().trim().replace(" ", "");
+                return Byte.parseByte(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, Format error try again");
-            } finally {
-                sc.nextLine();
             }
         }
     }
@@ -25,7 +24,8 @@ public class Input {
         while (true) {
             try {
                 System.out.println(message);
-                return sc.nextInt();
+                String aux = sc.nextLine().trim().replace(" ", "");
+                return Integer.parseInt(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, You must write only number, not letters, dot or comma");
             } finally {
@@ -38,7 +38,8 @@ public class Input {
         while (true) {
             try {
                 System.out.println(message);
-                return sc.nextFloat();
+                String aux = sc.nextLine().trim().replace(" ", "");
+                return Float.parseFloat(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, Format error! check if you write the number with comma");
             } finally {
@@ -51,7 +52,8 @@ public class Input {
         while (true) {
             try {
                 System.out.println(message);
-                return sc.nextDouble();
+                String aux = sc.nextLine().trim().replace(" ", "");
+                return Double.parseDouble(aux);
             } catch (InputMismatchException e) {
                 System.out.println("Sorry, Format error! check if you write the number with comma");
             } finally {
