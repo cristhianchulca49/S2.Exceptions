@@ -57,4 +57,22 @@ public class Input {
             }
         }
     }
+
+    public static char readChar(String message) {
+        while (true) {
+            try {
+                System.out.println(message);
+                char letter = sc.next().charAt(0);
+                if (Character.isLowerCase(letter)) {
+                    return letter;
+                } else {
+                    throw new CustomStringException("Only lowercase letters are allowed, no numbers or uppercase letters");
+                }
+            } catch (CustomStringException e) {
+                System.out.println(e.getMessage());
+            } finally {
+                sc.nextLine();
+            }
+        }
+    }
 }
