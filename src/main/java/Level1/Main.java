@@ -14,5 +14,8 @@ public class Main {
         sale.addNewProduct(new Product("Mouse", 500));
         sale.calculateTotalPrice();
 
+        System.out.println(sale.getProductName(1));
+        System.out.println(sale.getProductName(5));
+
     }
 }
