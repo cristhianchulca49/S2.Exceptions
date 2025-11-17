@@ -11,7 +11,7 @@ public class Main {
         sale.addNewProduct(new Product("Laptop", 100));
         sale.addNewProduct(new Product("Tablet", 200));
         sale.addNewProduct(new Product("Mouse", 300));
-        sale.addNewProduct(new Product("Mouse", 400));
+        sale.addNewProduct(new Product("Mouse", 500));
         sale.calculateTotalPrice();
 
     }
