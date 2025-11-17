@@ -20,6 +20,7 @@ public class Sale {
             for (Product product : products) {
                 totalPrice = totalPrice + product.getPrice();
             }
+            System.out.println("Total price: " + totalPrice);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
