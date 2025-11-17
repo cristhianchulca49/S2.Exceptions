@@ -7,8 +7,8 @@ public class Sale {
     private List<Product> products = new ArrayList<>();
     private double totalPrice = 0;
 
-    public Sale(List<Product> products) {
-        this.products.addAll(products);
+    public void addNewProduct(Product product) {
+        products.add(product);
     }
 
     public String getProductName(int i) {
