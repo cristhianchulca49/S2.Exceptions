@@ -12,6 +12,10 @@ public class Sale {
         this.products.addAll(products);
     }
 
+    public String getProductName(int i) {
+        return products.get(i).getName();
+    }
+
     public void calculateTotalPrice() {
         try {
             if (products.isEmpty()) {
