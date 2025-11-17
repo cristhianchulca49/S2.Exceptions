@@ -12,6 +12,9 @@ public class Sale {
             if (products.isEmpty()) {
                 throw new EmptySaleException("To make a sale, you need to add products first");
             }
+            for (Product product : products) {
+                totalPrice = totalPrice + product.getPrice();
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
