@@ -7,6 +7,10 @@ public class Sale {
     private List<Product> products = new ArrayList<>();
     private double totalPrice;
 
+    public void addProduct() {
+
+    }
+
     public void calculateTotalPrice() {
         try {
             if (products.isEmpty()) {
