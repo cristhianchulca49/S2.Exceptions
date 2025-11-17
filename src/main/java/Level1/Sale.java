@@ -2,13 +2,14 @@ package Level1;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Sale {
     private List<Product> products = new ArrayList<>();
-    private double totalPrice;
+    private double totalPrice = 0;
 
-    public void addProduct() {
-
+    public Sale(List<Product> products) {
+        this.products.addAll(products);
     }
 
     public void calculateTotalPrice() {
