@@ -91,4 +91,23 @@ public class Input {
             }
         }
     }
+
+    public static boolean readBoolean(String message) {
+        while (true) {
+            try {
+                System.out.println(message);
+                String letter = sc.nextLine();
+                if (letter.length() > 1) {
+                    throw new CustomStringException("Input must be a single letter: s or n");
+                }
+                return switch (letter.toLowerCase()) {
+                    case "n" -> false;
+                    case "s" -> true;
+                    default -> throw new CustomStringException("You just have to write S or N");
+                };
+            } catch (CustomStringException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }
