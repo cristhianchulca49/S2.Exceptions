@@ -2,7 +2,6 @@ package Level1;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Sale {
     private List<Product> products = new ArrayList<>();
@@ -13,7 +12,12 @@ public class Sale {
     }
 
     public String getProductName(int i) {
-        return products.get(i).getName();
+        try {
+            return products.get(i).getName();
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("you can only choose between 1 and " + products.size());
+        }
+        return "";
     }
 
     public void calculateTotalPrice() {
@@ -25,7 +29,7 @@ public class Sale {
                 totalPrice = totalPrice + product.getPrice();
             }
             System.out.println("Total price: " + totalPrice);
-        } catch (Exception e) {
+        } catch (EmptySaleException e) {
             System.out.println(e.getMessage());
         }
     }
