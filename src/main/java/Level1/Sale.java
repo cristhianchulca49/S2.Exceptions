@@ -9,6 +9,12 @@ public class Sale {
     private BigDecimal totalPrice;
 
     public void calculateTotalPrice() {
-
+        try {
+            if (products.isEmpty()) {
+                throw new EmptySaleException("To make a sale, you need to add products first");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
