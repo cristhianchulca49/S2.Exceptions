@@ -20,7 +20,16 @@ public class Input {
     }
 
     public static int readInt(String message) {
-        return sc.nextInt();
+        while (true) {
+            try {
+                System.out.println(message);
+                return sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Sorry, You must write only number, not letters, dot or comma");
+            } finally {
+                sc.nextLine();
+            }
+        }
     }
 
     public static float readFloat(String message) {
