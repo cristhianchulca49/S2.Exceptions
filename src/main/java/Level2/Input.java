@@ -46,6 +46,15 @@ public class Input {
     }
 
     public static double readDouble(String message) {
-        return sc.nextDouble();
+        while (true) {
+            try {
+                System.out.println(message);
+                return sc.nextDouble();
+            } catch (InputMismatchException e) {
+                System.out.println("Sorry, Format error! check if you write the number with comma");
+            } finally {
+                sc.nextLine();
+            }
+        }
     }
 }
