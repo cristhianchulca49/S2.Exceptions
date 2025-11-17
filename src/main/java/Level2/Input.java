@@ -60,11 +60,11 @@ public class Input {
         while (true) {
             try {
                 System.out.println(message);
-                char letter = sc.next().charAt(0);
-                if (Character.isLowerCase(letter)) {
-                    return letter;
+                String letter = sc.nextLine();
+                if (letter.length() > 1) {
+                    throw new CustomStringException("Only a single character is supported");
                 } else {
-                    throw new CustomStringException("Only lowercase letters are allowed, no numbers or uppercase letters");
+                    return letter.charAt(0);
                 }
             } catch (CustomStringException e) {
                 System.out.println(e.getMessage());
