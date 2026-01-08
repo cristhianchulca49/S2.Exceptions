@@ -1,12 +1,22 @@
 package Level3.ConsoleUI;
 
-import Level2.Input;
 import Level3.ReservationServices.ReservationServices;
 
 import java.util.List;
+import java.util.Map;
 
 public class MenuUI {
-    private static final List<String> MENUOPTIONS = List.of(
+    private final ReservationServices RESERVATION_SERVICES;
+    private final Map<Integer, Runnable> MENU_RUNNABLE = Map.of(
+            1, this::showAllReservations,
+            2, this::showReservationsByPerson,
+            3, this::reserveSeat,
+            4, this::cancelReservation,
+            5, this::cancelAllReservationsByPerson,
+            0, this::exitApplication
+    );
+
+    private static final List<String> MENU_OPTIONS = List.of(
             "1. Show all reservations",
             "2. Show reservations by person",
             "3. Reserve a seat",
@@ -17,43 +27,39 @@ public class MenuUI {
 
 
     public MenuUI(ReservationServices reservationServices) {
-
+        this.RESERVATION_SERVICES = reservationServices;
     }
 
     public void showMenu() {
-
         while (true) {
-            MENUOPTIONS.forEach(System.out::println);
+            MENU_OPTIONS.forEach(System.out::println);
             int option = Input.readInt("Please, enter an option: ");
-            switch (option) {
-                case 1:
-                    showAllReservations();
-                    break;
-
-                case 2:
-                    showReservationsByPerson();
-                    break;
-
-                case 3:
-                    reserveSeat();
-                    break;
-
-                case 4:
-                    cancelReservation();
-                    break;
-
-                case 5:
-                    cancelAllReservationsByPerson();
-                    break;
-
-                case 0:
-                    exitApplication();
-                    return;
-
-                default:
-                    showInvalidOptionMessage();
-                    break;
+            if (option == 0) {
+                return;
+            }
+            if (MENU_RUNNABLE.containsKey(option)) {
+                MENU_RUNNABLE.get(option).run();
+            } else {
+                System.out.println("Invalid option");
             }
         }
+    }
+
+    private void showAllReservations() {
+    }
+
+    private void showReservationsByPerson() {
+    }
+
+    private void reserveSeat() {
+    }
+
+    private void cancelReservation() {
+    }
+
+    private void cancelAllReservationsByPerson() {
+    }
+
+    private void exitApplication() {
     }
 }
