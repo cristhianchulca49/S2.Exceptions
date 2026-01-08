@@ -1,6 +1,7 @@
 package Level3.ConsoleUI;
 
 import Level3.ReservationServices.CustomExceptions.InvalidSeatException;
+import Level3.ReservationServices.CustomExceptions.SeatAlreadyEmptyException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyTakenException;
 import Level3.ReservationServices.ReservationServices;
 
@@ -56,15 +57,22 @@ public class MenuUI {
     private void reserveSeat() {
         try {
             int row = Input.readInt("Please, enter a row number: ");
-            int numberSeat = Input.readInt("Please, enter a seat number: ");
+            int seatNumber = Input.readInt("Please, enter a seat number: ");
             String name = Input.readString("Please, enter a name: ");
-            RESERVATION_SERVICES.reserveSeat(row, numberSeat, name);
+            RESERVATION_SERVICES.reserveSeat(row, seatNumber, name);
         } catch (InvalidSeatException | SeatAlreadyTakenException e) {
             System.out.println(e.getMessage());
         }
     }
 
     private void cancelReservation() {
+        try {
+            int row = Input.readInt("Please, enter a row number: ");
+            int seatNumber = Input.readInt("Please, enter a seat number: ");
+            RESERVATION_SERVICES.cancelReservation(row, seatNumber);
+        } catch (SeatAlreadyEmptyException | InvalidSeatException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void cancelAllReservationsByPerson() {

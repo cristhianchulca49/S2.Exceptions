@@ -32,4 +32,12 @@ public class ReservationServices {
         }
         seatReserved.add(chosenSeat);
     }
+
+    public void cancelReservation(int row, int seatNumber) throws InvalidSeatException, SeatAlreadyEmptyException {
+        validateSeatPosition(row, seatNumber);
+        Seat seatToCancel = new Seat(row, seatNumber, "");
+        if (!seatReserved.remove(seatToCancel)) {
+            throw new SeatAlreadyEmptyException();
+        }
+    }
 }
