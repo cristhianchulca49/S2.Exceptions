@@ -56,6 +56,14 @@ public class MenuUI {
     }
 
     private void showReservationsByPerson() {
+        try {
+            String name = Input.readString("Please, enter your name: ");
+            List<Seat> seatsReservedByPersonCopy = RESERVATION_SERVICES.showReservationsByPerson(name);
+            if (seatsReservedByPersonCopy.isEmpty()) System.out.println("There are no seats reserved.");
+            seatsReservedByPersonCopy.forEach(System.out::println);
+        } catch (InvalidPersonNameException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void reserveSeat() {

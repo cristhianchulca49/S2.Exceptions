@@ -53,6 +53,13 @@ public class ReservationServices {
         return List.copyOf(seatsReserved);
     }
 
+    public List<Seat> showReservationsByPerson(String name) throws InvalidPersonNameException {
+        validateName(name);
+        return seatsReserved.stream()
+                .filter(seat -> seat.name().equalsIgnoreCase(name))
+                .toList();
+    }
+
     private void validateName(String name) throws InvalidPersonNameException {
         if (name.matches(".*\\d.*")) {
             throw new InvalidPersonNameException();
