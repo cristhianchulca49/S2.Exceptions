@@ -95,7 +95,7 @@ public class MenuUI {
             RESERVATION_SERVICES.cancelAllReservationsByPerson(name);
             System.out.println("the seat has been cancelled.");
         } catch (InvalidPersonNameException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 }
