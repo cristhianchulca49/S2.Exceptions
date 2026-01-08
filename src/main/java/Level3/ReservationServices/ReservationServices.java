@@ -1,6 +1,7 @@
 package Level3.ReservationServices;
 
 import Level3.Models.Seat;
+import Level3.ReservationServices.CustomExceptions.InvalidPersonNameException;
 import Level3.ReservationServices.CustomExceptions.InvalidSeatException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyEmptyException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyTakenException;
@@ -24,8 +25,9 @@ public class ReservationServices {
         }
     }
 
-    public void reserveSeat(int row, int seatNumber, String name) throws InvalidSeatException, SeatAlreadyTakenException {
+    public void reserveSeat(int row, int seatNumber, String name) throws InvalidSeatException, SeatAlreadyTakenException, InvalidPersonNameException {
         validateSeatPosition(row, seatNumber);
+        validateName(name);
         Seat chosenSeat = new Seat(row, seatNumber, name);
         if (seatsReserved.contains(chosenSeat)) {
             throw new SeatAlreadyTakenException();
@@ -41,7 +43,22 @@ public class ReservationServices {
         }
     }
 
+    public void cancelAllReservationsByPerson(String name) throws InvalidPersonNameException {
+        validateName(name);
+        seatsReserved.removeIf(seat ->
+                seat.name().equalsIgnoreCase(name));
+    }
+
     public List<Seat> getSeatsReserved() {
         return List.copyOf(seatsReserved);
+    }
+
+    private void validateName(String name) throws InvalidPersonNameException {
+        if (name.matches(".*\\d.*")) {
+            throw new InvalidPersonNameException();
+        }
+        if (name.trim().isEmpty()) {
+            throw new InvalidPersonNameException();
+        }
     }
 }

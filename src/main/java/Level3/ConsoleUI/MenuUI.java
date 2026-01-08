@@ -1,6 +1,7 @@
 package Level3.ConsoleUI;
 
 import Level3.Models.Seat;
+import Level3.ReservationServices.CustomExceptions.InvalidPersonNameException;
 import Level3.ReservationServices.CustomExceptions.InvalidSeatException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyEmptyException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyTakenException;
@@ -16,8 +17,7 @@ public class MenuUI {
             2, this::showReservationsByPerson,
             3, this::reserveSeat,
             4, this::cancelReservation,
-            5, this::cancelAllReservationsByPerson,
-            0, this::exitApplication
+            5, this::cancelAllReservationsByPerson
     );
 
     private static final List<String> MENU_OPTIONS = List.of(
@@ -64,7 +64,8 @@ public class MenuUI {
             int seatNumber = Input.readInt("Please, enter a seat number: ");
             String name = Input.readString("Please, enter a name: ");
             RESERVATION_SERVICES.reserveSeat(row, seatNumber, name);
-        } catch (InvalidSeatException | SeatAlreadyTakenException e) {
+            System.out.println("the seat has been reserved.");
+        } catch (InvalidSeatException | SeatAlreadyTakenException | InvalidPersonNameException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -74,14 +75,19 @@ public class MenuUI {
             int row = Input.readInt("Please, enter a row number: ");
             int seatNumber = Input.readInt("Please, enter a seat number: ");
             RESERVATION_SERVICES.cancelReservation(row, seatNumber);
+            System.out.println("the seat has been cancelled.");
         } catch (SeatAlreadyEmptyException | InvalidSeatException e) {
             System.out.println(e.getMessage());
         }
     }
 
     private void cancelAllReservationsByPerson() {
-    }
-
-    private void exitApplication() {
+        try {
+            String name = Input.readString("Please, enter a name: ");
+            RESERVATION_SERVICES.cancelAllReservationsByPerson(name);
+            System.out.println("the seat has been cancelled.");
+        } catch (InvalidPersonNameException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
