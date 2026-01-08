@@ -10,5 +10,6 @@ public class Main {
         int numberSeats = Input.readInt("Please, enter the number of seats: ");
         ReservationServices reservationServices = new ReservationServices(numberRows, numberSeats);
         MenuUI consoleUI = new MenuUI(reservationServices);
+        consoleUI.showMenu();
     }
 }
