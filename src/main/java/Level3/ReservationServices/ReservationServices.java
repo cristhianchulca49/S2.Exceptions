@@ -11,7 +11,7 @@ import java.util.List;
 public class ReservationServices {
     private final int totalRows;
     private final int seatsPerRows;
-    private final List<Seat> seatReserved = new ArrayList<>();
+    private final List<Seat> seatsReserved = new ArrayList<>();
 
     public ReservationServices(int numberRows, int seatsPerRows) {
         this.totalRows = numberRows;
@@ -27,17 +27,21 @@ public class ReservationServices {
     public void reserveSeat(int row, int seatNumber, String name) throws InvalidSeatException, SeatAlreadyTakenException {
         validateSeatPosition(row, seatNumber);
         Seat chosenSeat = new Seat(row, seatNumber, name);
-        if (seatReserved.contains(chosenSeat)) {
+        if (seatsReserved.contains(chosenSeat)) {
             throw new SeatAlreadyTakenException();
         }
-        seatReserved.add(chosenSeat);
+        seatsReserved.add(chosenSeat);
     }
 
     public void cancelReservation(int row, int seatNumber) throws InvalidSeatException, SeatAlreadyEmptyException {
         validateSeatPosition(row, seatNumber);
         Seat seatToCancel = new Seat(row, seatNumber, "");
-        if (!seatReserved.remove(seatToCancel)) {
+        if (!seatsReserved.remove(seatToCancel)) {
             throw new SeatAlreadyEmptyException();
         }
+    }
+
+    public List<Seat> getSeatsReserved() {
+        return List.copyOf(seatsReserved);
     }
 }

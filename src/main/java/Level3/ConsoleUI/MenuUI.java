@@ -1,5 +1,6 @@
 package Level3.ConsoleUI;
 
+import Level3.Models.Seat;
 import Level3.ReservationServices.CustomExceptions.InvalidSeatException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyEmptyException;
 import Level3.ReservationServices.CustomExceptions.SeatAlreadyTakenException;
@@ -49,6 +50,9 @@ public class MenuUI {
     }
 
     private void showAllReservations() {
+        List<Seat> seatsReservedCopy = RESERVATION_SERVICES.getSeatsReserved();
+        if (seatsReservedCopy.isEmpty()) System.out.println("There are no seats reserved.");
+        seatsReservedCopy.forEach(System.out::println);
     }
 
     private void showReservationsByPerson() {
